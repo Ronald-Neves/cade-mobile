@@ -1,42 +1,41 @@
 import { useState } from "react";
 import {
-    Box,
-    Button,
-    CheckboxWrapper,
-    Container,
-    Form,
-    Input,
-    Label,
-    LinkRow,
-    LinkText,
-    RightPanel,
-    Subtitle,
-    Title
+  Box,
+  CheckboxWrapper,
+  Container,
+  Form,
+  Input,
+  Label,
+  LinkRow,
+  LinkText,
+  RightPanel,
+  Subtitle,
+  Title
 } from "./styles";
 
-import { useNavigation } from "@react-navigation/native";
-import { Alert, Switch } from "react-native";
+import { useRouter } from "expo-router";
+import { Alert, Button, Switch } from "react-native";
 
 export default function Login() {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const [usuario, setUsuario] = useState("");
   const [senha, setSenha] = useState("");
   const [lembrar, setLembrar] = useState(false);
 
   const handleLogin = () => {
-    // Simular login simples
     if (usuario.trim() === "" || senha.trim() === "") {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
     }
 
-    // Navega para a Home
-    navigation.navigate("Home");
+    // ✅ Após login, redireciona para a Home dentro da tab
+    router.replace("/(tabs)/Home");
   };
 
   const handleCadastro = () => {
-    navigation.navigate("Cadastro");
+    // ✅ Vai para tela de cadastro fora das tabs
+    router.push("/screens/Cadastro");
   };
 
   return (
@@ -64,10 +63,7 @@ export default function Login() {
               />
               <Label>Lembrar de mim</Label>
             </CheckboxWrapper>
-            <Button onPress={handleLogin}>
-              <LinkText>ENTRAR</LinkText>
-            </Button>
-
+            <Button onPress={handleLogin} title="ENTRAR" />
             <LinkRow>
               <LinkText onPress={handleCadastro}>
                 Não tem conta? Cadastrar

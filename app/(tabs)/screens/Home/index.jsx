@@ -1,16 +1,15 @@
-import React from "react";
-import { View } from "react-native";
+import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { View } from "react-native";
 import {
   Container,
   FooterMenu,
   MenuItem,
   MenuText,
 } from "./styles";
-import { FiHome, FiSearch, FiBriefcase, FiUser } from "react-icons/fi"; // substituído abaixo
+
 
 // Substituindo os ícones por equivalents do react-native-vector-icons
-import { Feather } from "@expo/vector-icons";
 
 const Home = ({ children }) => {
   const navigation = useNavigation();
