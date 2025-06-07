@@ -64,7 +64,8 @@ export default function Cadastro() {
             </Button>
 
             <LinkRow>
-              <LinkText onPress={() => router.push("/auth/login")}>
+              <LinkText onPress={() => router.push("/login")}>
+
                 Já tem conta? Entrar
               </LinkText>
             </LinkRow>

@@ -18,7 +18,7 @@ export default function Login() {
   return (
     <View style={{ padding: 20 }}>
       <TextInput placeholder="Usuário" value={usuario} onChangeText={setUsuario} />
-      <TextInput placeholder="Senha" secureTextEntry value={senha} onChangeText={setSenha} />
+      <TextInput placeholder="Senhaa" secureTextEntry value={senha} onChangeText={setSenha} />
       <Button title="Entrar" onPress={handleLogin} />
     </View>
   );
