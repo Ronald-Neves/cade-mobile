@@ -1,22 +1,45 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import { Alert } from "react-native";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView
+} from "react-native";
+
+import {
+  Box,
+  Button,
+  Container,
+  Form,
+  Input,
+  Label,
+  LinkRow,
+  LinkText,
+  RightPanel,
+  Subtitle,
+  Title
+} from "./styles";
 
 export default function Cadastro() {
-  const router = useRouter(); // ✅ Substitui useNavigation
+  const router = useRouter();
 
-  const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
   const [usuario, setUsuario] = useState("");
   const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
 
   const handleCadastro = () => {
+    if (!usuario || !email || !senha || !confirmarSenha) {
+      Alert.alert("Erro", "Preencha todos os campos.");
+      return;
+    }
+
     if (senha !== confirmarSenha) {
       Alert.alert("Erro", "As senhas não conferem.");
       return;
     }
 
-    // ✅ Simula sucesso e redireciona para Home
     router.replace("/(tabs)/Home");
   };
 
@@ -24,52 +47,62 @@ export default function Cadastro() {
     <Container>
       <Box>
         <RightPanel>
-          <Title>Cadastro</Title>
-          <Subtitle>Preencha os dados abaixo para criar sua conta</Subtitle>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={{ flex: 1 }}
+            keyboardVerticalOffset={60}
+          >
+            <ScrollView
+              contentContainerStyle={{ flexGrow: 1 }}
+              showsVerticalScrollIndicator={false}
+            >
+              <Title>Cadastro</Title>
+              <Subtitle>Preencha os dados abaixo para criar sua conta</Subtitle>
 
-          <Form>
-            <Label>Nome de usuário</Label>
-            <Input
-              placeholder="Digite seu nome de usuário"
-              value={usuario}
-              onChangeText={setUsuario}
-            />
+              <Form>
+                <Label>Nome de usuário</Label>
+                <Input
+                  placeholder="Digite seu nome de usuário"
+                  value={usuario}
+                  onChangeText={setUsuario}
+                />
 
-            <Label>Email</Label>
-            <Input
-              placeholder="Digite seu email"
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
-            />
+                <Label>Email</Label>
+                <Input
+                  placeholder="Digite seu email"
+                  value={email}
+                  onChangeText={setEmail}
+                  keyboardType="email-address"
+                />
 
-            <Label>Senha</Label>
-            <Input
-              placeholder="Digite sua senha"
-              value={senha}
-              onChangeText={setSenha}
-              secureTextEntry
-            />
+                <Label>Senha</Label>
+                <Input
+                  placeholder="Digite sua senha"
+                  value={senha}
+                  onChangeText={setSenha}
+                  secureTextEntry
+                />
 
-            <Label>Confirmar senha</Label>
-            <Input
-              placeholder="Confirme sua senha"
-              value={confirmarSenha}
-              onChangeText={setConfirmarSenha}
-              secureTextEntry
-            />
+                <Label>Confirmar senha</Label>
+                <Input
+                  placeholder="Confirme sua senha"
+                  value={confirmarSenha}
+                  onChangeText={setConfirmarSenha}
+                  secureTextEntry
+                />
 
-            <Button onPress={handleCadastro}>
-              <LinkText>CADASTRAR</LinkText>
-            </Button>
+                <Button onPress={handleCadastro}>
+                  <LinkText>CADASTRAR</LinkText>
+                </Button>
 
-            <LinkRow>
-              <LinkText onPress={() => router.push("/login")}>
-
-                Já tem conta? Entrar
-              </LinkText>
-            </LinkRow>
-          </Form>
+                <LinkRow>
+                  <LinkText onPress={() => router.push("/auth/login")}>
+                    Já tem conta? Entrar
+                  </LinkText>
+                </LinkRow>
+              </Form>
+            </ScrollView>
+          </KeyboardAvoidingView>
         </RightPanel>
       </Box>
     </Container>
