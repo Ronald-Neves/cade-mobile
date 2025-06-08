@@ -16,6 +16,16 @@ export const Title = styled.Text`
   text-align: center;
 `;
 
+export const InputBusca = styled.TextInput`
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #333;
+`;
+
 export const ServiceGrid = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
