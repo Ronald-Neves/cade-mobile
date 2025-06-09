@@ -20,7 +20,7 @@ export default function Layout() {
         name="HomeInicio"
         options={{
           title: "Início",
-          href: "/Home/Inicio", // <- aponta para Home/Inicio
+          href: "/Home", // <- aponta para Home/Inicio
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
