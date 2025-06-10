@@ -40,7 +40,7 @@ export default function Cadastro() {
       return;
     }
 
-    router.replace("/(tabs)/Home");
+    router.replace("/home");
   };
 
   return (
@@ -73,6 +73,7 @@ export default function Cadastro() {
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
+                  type="email"
                 />
 
                 <Label>Senha</Label>

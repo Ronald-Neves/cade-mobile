@@ -18,7 +18,7 @@ export default function Cadastro() {
     }
 
     // Simula sucesso no cadastro
-    navigation.navigate("Home");
+    navigation.navigate("home");
   };
 
   return (

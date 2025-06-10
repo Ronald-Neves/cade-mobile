@@ -11,7 +11,7 @@ import {
   ServiceInfo,
   ServiceName,
   Title,
-} from "./styles";
+} from "./Home/Servico/styles";
 
 function Servico() {
   const [busca, setBusca] = useState("");

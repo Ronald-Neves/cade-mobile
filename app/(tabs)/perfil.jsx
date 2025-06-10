@@ -1,21 +1,21 @@
 import { useNavigation } from "@react-navigation/native";
 import {
-    Avatar,
-    Container,
-    Header,
-    LogoutButton,
-    LogoutIcon,
-    LogoutText,
-    Name,
-    OptionIcon,
-    OptionItem,
-    OptionList,
-    OptionText,
-    SectionTitle
-} from "./styles";
+  Avatar,
+  Container,
+  Header,
+  LogoutButton,
+  LogoutIcon,
+  LogoutText,
+  Name,
+  OptionIcon,
+  OptionItem,
+  OptionList,
+  OptionText,
+  SectionTitle
+} from "./Home/Perfil/styles";
 
 import {
-    FontAwesome
+  FontAwesome
 } from "@expo/vector-icons";
 
 function Perfil() {

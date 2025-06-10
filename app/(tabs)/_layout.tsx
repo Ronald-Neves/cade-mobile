@@ -17,10 +17,9 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="HomeInicio"
+        name="home"
         options={{
           title: "Início",
-          href: "/Home", // <- aponta para Home/Inicio
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
@@ -28,7 +27,7 @@ export default function Layout() {
       />
 
       <Tabs.Screen
-        name="Servico"
+        name="servico"
         options={{
           title: "Serviços",
           tabBarIcon: ({ color, size }) => (
@@ -38,10 +37,9 @@ export default function Layout() {
       />
 
       <Tabs.Screen
-        name="HomePerfil"
+        name="perfil"
         options={{
           title: "Perfil",
-          href: "/Home/Perfil", // <- aponta para Home/Perfil
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),

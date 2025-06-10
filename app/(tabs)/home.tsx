@@ -10,7 +10,7 @@ import {
   ExploreButton,
   ExploreButtonText,
   SectionTitle,
-} from "./styles";
+} from "./Home/styles";
 
 export default function Home() {
   return (

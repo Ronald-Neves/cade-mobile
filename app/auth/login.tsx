@@ -27,7 +27,7 @@ export default function Login() {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
     }
-    router.replace("/(tabs)/Home");
+    router.replace("/home");
   };
 
   const handleCadastro = () => {
