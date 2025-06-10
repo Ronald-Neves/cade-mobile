@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 import {
   Avatar,
   Container,
@@ -14,12 +14,10 @@ import {
   SectionTitle
 } from "./Home/Perfil/styles";
 
-import {
-  FontAwesome
-} from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 function Perfil() {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const usuario = {
     nome: "Samuel Souza",
@@ -27,7 +25,7 @@ function Perfil() {
   };
 
   const navigateTo = (path) => {
-    navigation.navigate(path);
+    router.push(path);
   };
 
   return (
@@ -39,17 +37,17 @@ function Perfil() {
 
       <SectionTitle>Conta</SectionTitle>
       <OptionList>
-        <OptionItem onPress={() => navigateTo("/home/perfil/editar")}>
+        <OptionItem onPress={() => navigateTo("/perfil/editar")}>
           <OptionIcon><FontAwesome name="user-edit" size={20} color="#555" /></OptionIcon>
           <OptionText>Editar Perfil</OptionText>
         </OptionItem>
-        <OptionItem onPress={() => navigateTo("/home/perfil/agendamentos")}>
+        <OptionItem onPress={() => navigateTo("/perfil/agendamentos")}>
           <OptionIcon><FontAwesome name="history" size={20} color="#555" /></OptionIcon>
           <OptionText>Meus Agendamentos</OptionText>
         </OptionItem>
-        <OptionItem onPress={() => navigateTo("/home/perfil/pagamento")}>
+        <OptionItem onPress={() => navigateTo("/perfil/pagamento")}>
           <OptionIcon><FontAwesome name="credit-card" size={20} color="#555" /></OptionIcon>
-          <OptionText>Formas de Pagamento</OptionText>
+          <OptionText>Meus Serviços</OptionText>
         </OptionItem>
       </OptionList>
 

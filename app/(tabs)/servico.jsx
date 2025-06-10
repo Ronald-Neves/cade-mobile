@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router"; // Importa o router
 import { useState } from "react";
 import { ScrollView, Text } from "react-native";
 import {
@@ -15,6 +16,7 @@ import {
 
 function Servico() {
   const [busca, setBusca] = useState("");
+  const router = useRouter(); // Inicializa o roteador
 
   const servicos = [
     {
@@ -125,7 +127,14 @@ function Servico() {
               <ServiceInfo>
                 <ServiceName>{servico.nome}</ServiceName>
                 <ServiceDescription>{servico.descricao}</ServiceDescription>
-                <ServiceButton>
+                <ServiceButton
+                  onPress={() =>
+                    router.push({
+                      pathname: "/perfil/agendar",
+                      params: { servico: servico.nome },
+                    })
+                  }
+                >
                   <Text style={{ color: "#fff", fontWeight: "bold" }}>
                     Agendar
                   </Text>
