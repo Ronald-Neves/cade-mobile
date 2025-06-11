@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FlatList } from "react-native";
 import {
-    AnswerText,
-    Container,
-    QuestionContainer,
-    QuestionText,
-    Separator,
-    Title
+  AnswerText,
+  Container,
+  QuestionContainer,
+  QuestionText,
+  Separator,
+  Title
 } from "./styles";
 
 const perguntasRespostas = [
@@ -31,12 +31,12 @@ const perguntasRespostas = [
     resposta: "Vá até a aba 'Perfil' e toque em 'Sair' na parte inferior da tela.",
   },
   {
-    pergunta: "1",
-    resposta: "Vá até a aba 'Perfil' e toque em 'Sair' na parte inferior da tela.",
+    pergunta: "Qual a ideia do aplicativo Cade?",
+    resposta: "A proposta do aplicativo é conectar prestadores de serviços com possíveis clientes, facilitando o agendamento e a comunicação entre as partes.",
   },
   {
-    pergunta: "2",
-    resposta: "Vá até a aba 'Perfil' e toque em 'Sair' na parte inferior da tela.",
+    pergunta: "Informações",
+    resposta: "O aplicativo 'Cade?' está em sua versão inicial e ainda está em fase de desenvolvimento. Por isso, é possível que alguns erros ou limitações estejam presentes nesta etapa. Estamos trabalhando constantemente para aprimorar a experiência, corrigir eventuais falhas e lançar atualizações com melhorias e novas funcionalidades em breve. Agradecemos pela compreensão e por fazer parte dessa jornada com a gente.",
   },
 ];
 
