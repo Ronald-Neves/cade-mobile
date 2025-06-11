@@ -21,6 +21,11 @@ import {
   Title
 } from "./styles";
 
+// Import Firebase Auth e Firestore
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebaseConfig";
+
 export default function Cadastro() {
   const router = useRouter();
 
@@ -29,9 +34,20 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
-  const handleCadastro = () => {
+  const handleCadastro = async () => {
     if (!usuario || !email || !senha || !confirmarSenha) {
       Alert.alert("Erro", "Preencha todos os campos.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert("Erro", "Email inválido.");
+      return;
+    }
+
+    if (senha.length < 6) {
+      Alert.alert("Erro", "A senha deve ter no mínimo 6 caracteres.");
       return;
     }
 
@@ -40,7 +56,44 @@ export default function Cadastro() {
       return;
     }
 
-    router.replace("/home");
+    try {
+      console.log("1️⃣ Criando conta com:", email, senha);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+      const user = auth.currentUser; // pega o usuário logado automaticamente
+      if (!user) {
+        throw new Error("Usuário não encontrado após criação");
+      }
+      console.log("✅ Conta criada com UID:", user.uid);
+
+      try {
+        console.log("2️⃣ Atualizando displayName...");
+        await updateProfile(user, { displayName: usuario });
+        console.log("✅ DisplayName atualizado:", usuario);
+      } catch (error: any) {
+        console.error("🚨 Erro ao atualizar displayName:", error.message);
+      }
+
+      try {
+        console.log("3️⃣ Gravando no Firestore...");
+        await setDoc(doc(db, "users", user.uid), {
+          username: usuario,
+          email: email,
+          createdAt: new Date(),
+        });
+        console.log("✅ Documento Firestore criado");
+      } catch (error: any) {
+        console.error("🚨 Erro ao gravar no Firestore:", error.message);
+      }
+
+      // Pequeno delay para garantir sincronização do estado
+      setTimeout(() => {
+        router.replace("/home");
+      }, 500);
+
+    } catch (error: any) {
+      console.error("🚨 Erro ao criar usuário:", error.message);
+      Alert.alert("Erro no cadastro", error.message || "Algo deu errado");
+    }
   };
 
   return (

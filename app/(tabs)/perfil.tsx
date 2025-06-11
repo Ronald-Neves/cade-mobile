@@ -1,4 +1,8 @@
+import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "../../firebaseConfig"; // ajuste caminho se necessário
 import {
   Avatar,
   Container,
@@ -14,25 +18,43 @@ import {
   SectionTitle
 } from "./Home/Perfil/styles";
 
-import { FontAwesome } from "@expo/vector-icons";
-
 function Perfil() {
   const router = useRouter();
+  const [nome, setNome] = useState("Carregando...");
+  const [avatar, setAvatar] = useState("https://ui-avatars.com/api/?name=Usuário");
 
-  const usuario = {
-    nome: "Samuel Souza",
-    avatar: "https://tse4.explicit.bing.net/th?id=OIP.KPFf8rTO-ICls97C8pZskAHaEK&pid=Api&P=0&h=180",
-  };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setNome(user.displayName || "Usuário");
+        setAvatar(`https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || "User")}`);
+      } else {
+        setNome("Desconectado");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   const navigateTo = (path) => {
     router.push(path);
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("✅ Usuário deslogado");
+      router.replace("/auth/login"); // ou rota inicial
+    } catch (error) {
+      console.error("Erro ao deslogar:", error);
+    }
+  };
+
   return (
     <Container>
       <Header>
-        <Avatar source={{ uri: usuario.avatar }} />
-        <Name>{usuario.nome}</Name>
+        <Avatar source={{ uri: avatar }} />
+        <Name>{nome}</Name>
       </Header>
 
       <SectionTitle>Conta</SectionTitle>
@@ -67,7 +89,7 @@ function Perfil() {
         </OptionItem>
       </OptionList>
 
-      <LogoutButton onPress={() => console.log("Sair")}>
+      <LogoutButton onPress={handleLogout}>
         <LogoutIcon><FontAwesome name="sign-out" size={20} color="#d9534f" /></LogoutIcon>
         <LogoutText>Sair</LogoutText>
       </LogoutButton>
