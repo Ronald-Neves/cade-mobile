@@ -45,7 +45,7 @@ function Perfil() {
           <OptionIcon><FontAwesome name="history" size={20} color="#555" /></OptionIcon>
           <OptionText>Meus Agendamentos</OptionText>
         </OptionItem>
-        <OptionItem onPress={() => navigateTo("/perfil/pagamento")}>
+        <OptionItem onPress={() => navigateTo("/perfil/service")}>
           <OptionIcon><FontAwesome name="credit-card" size={20} color="#555" /></OptionIcon>
           <OptionText>Meus Serviços</OptionText>
         </OptionItem>
