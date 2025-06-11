@@ -61,7 +61,7 @@ function Perfil() {
           <OptionIcon><FontAwesome name="cog" size={20} color="#555" /></OptionIcon>
           <OptionText>Configurações</OptionText>
         </OptionItem>
-        <OptionItem onPress={() => navigateTo("/home/perfil/ajuda")}>
+        <OptionItem onPress={() => navigateTo("/perfil/ajuda")}>
           <OptionIcon><FontAwesome name="question-circle" size={20} color="#555" /></OptionIcon>
           <OptionText>Ajuda</OptionText>
         </OptionItem>
