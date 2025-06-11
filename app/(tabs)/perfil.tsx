@@ -53,14 +53,6 @@ function Perfil() {
 
       <SectionTitle>Preferências</SectionTitle>
       <OptionList>
-        <OptionItem onPress={() => navigateTo("/home/perfil/notificacoes")}>
-          <OptionIcon><FontAwesome name="bell" size={20} color="#555" /></OptionIcon>
-          <OptionText>Notificações</OptionText>
-        </OptionItem>
-        <OptionItem onPress={() => navigateTo("/home/perfil/configuracoes")}>
-          <OptionIcon><FontAwesome name="cog" size={20} color="#555" /></OptionIcon>
-          <OptionText>Configurações</OptionText>
-        </OptionItem>
         <OptionItem onPress={() => navigateTo("/perfil/ajuda")}>
           <OptionIcon><FontAwesome name="question-circle" size={20} color="#555" /></OptionIcon>
           <OptionText>Ajuda</OptionText>
