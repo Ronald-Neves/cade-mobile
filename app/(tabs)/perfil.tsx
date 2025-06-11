@@ -37,7 +37,7 @@ function Perfil() {
 
       <SectionTitle>Conta</SectionTitle>
       <OptionList>
-        <OptionItem onPress={() => navigateTo("/perfil/editar")}>
+        <OptionItem onPress={() => navigateTo("/perfil/editarperfil")}>
           <OptionIcon><FontAwesome name="user-edit" size={20} color="#555" /></OptionIcon>
           <OptionText>Editar Perfil</OptionText>
         </OptionItem>
