@@ -21,6 +21,8 @@ import {
   Title
 } from "./styles";
 
+import { cadastrarUsuario } from "../database/usuarios"; // ✅ Importa a função de cadastro
+
 export default function Cadastro() {
   const router = useRouter();
 
@@ -29,7 +31,7 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
-  const handleCadastro = () => {
+  const handleCadastro = async () => {
     if (!usuario || !email || !senha || !confirmarSenha) {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
@@ -40,7 +42,14 @@ export default function Cadastro() {
       return;
     }
 
-    router.replace("/home");
+    try {
+      await cadastrarUsuario(usuario, email, senha); // ✅ Salva no SQLite
+      Alert.alert("Sucesso", "Usuário cadastrado com sucesso!");
+      router.replace("/home");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível cadastrar. Email já pode estar em uso.");
+      console.error("Erro ao cadastrar:", error);
+    }
   };
 
   return (

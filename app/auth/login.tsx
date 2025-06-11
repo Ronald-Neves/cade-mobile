@@ -15,6 +15,7 @@ import {
 
 import { useRouter } from "expo-router";
 import { Alert, Button, Switch } from "react-native";
+import { autenticarUsuario } from "../database/usuarios"; // ✅ Importação do SQLite
 
 export default function Login() {
   const router = useRouter();
@@ -22,17 +23,23 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [lembrar, setLembrar] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!usuario.trim() || !senha.trim()) {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
     }
-    router.replace("/home");
+
+    try {
+      const user = await autenticarUsuario(usuario, senha); // Busca no banco
+      Alert.alert("Sucesso", `Bem-vindo, ${user.nome}!`);
+      router.replace("/home");
+    } catch (error) {
+      Alert.alert("Erro", "Usuário ou senha inválidos.");
+    }
   };
 
   const handleCadastro = () => {
     router.push("/auth/register");
-
   };
 
   return (
