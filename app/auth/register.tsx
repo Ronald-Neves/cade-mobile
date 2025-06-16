@@ -27,16 +27,10 @@ export default function Cadastro() {
   const [usuario, setUsuario] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
 
   const handleCadastro = () => {
-    if (!usuario || !email || !senha || !confirmarSenha) {
+    if (!usuario || !email || !senha ) {
       Alert.alert("Erro", "Preencha todos os campos.");
-      return;
-    }
-
-    if (senha !== confirmarSenha) {
-      Alert.alert("Erro", "As senhas não conferem.");
       return;
     }
 
@@ -83,15 +77,6 @@ export default function Cadastro() {
                   onChangeText={setSenha}
                   secureTextEntry
                 />
-
-                <Label>Confirmar senha</Label>
-                <Input
-                  placeholder="Confirme sua senha"
-                  value={confirmarSenha}
-                  onChangeText={setConfirmarSenha}
-                  secureTextEntry
-                />
-
                 <Button onPress={handleCadastro}>
                   <LinkText>CADASTRAR</LinkText>
                 </Button>
