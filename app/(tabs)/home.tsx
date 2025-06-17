@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router"; // ✅ Adicionado para navegação
 import { ScrollView } from "react-native";
 import {
   Banner,
@@ -13,6 +14,8 @@ import {
 } from "./Home/styles";
 
 export default function Home() {
+  const router = useRouter(); // ✅ Instancia o roteador
+
   return (
     <ScrollView>
       <Container>
@@ -48,7 +51,8 @@ export default function Home() {
           </Card>
         </CardRow>
 
-        <ExploreButton>
+        {/* ✅ Botão com navegação para /servico */}
+        <ExploreButton onPress={() => router.push("/servico")}>
           <ExploreButtonText>Explorar todos os serviços</ExploreButtonText>
         </ExploreButton>
       </Container>
