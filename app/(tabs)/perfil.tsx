@@ -14,7 +14,7 @@ import {
   SectionTitle
 } from "./Home/Perfil/styles";
 
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons"; // ✅ usando FontAwesome5 (ícones compatíveis)
 
 function Perfil() {
   const router = useRouter();
@@ -24,7 +24,8 @@ function Perfil() {
     avatar: "https://tse4.explicit.bing.net/th?id=OIP.KPFf8rTO-ICls97C8pZskAHaEK&pid=Api&P=0&h=180",
   };
 
-  const navigateTo = (path) => {
+  // ✅ Tipagem correta do parâmetro 'path'
+  const navigateTo = (path: string) => {
     router.push(path);
   };
 
@@ -38,15 +39,15 @@ function Perfil() {
       <SectionTitle>Conta</SectionTitle>
       <OptionList>
         <OptionItem onPress={() => navigateTo("/perfil/editarperfil")}>
-          <OptionIcon><FontAwesome name="user-edit" size={20} color="#555" /></OptionIcon>
+          <OptionIcon><FontAwesome5 name="user-edit" size={20} color="#555" /></OptionIcon>
           <OptionText>Editar Perfil</OptionText>
         </OptionItem>
         <OptionItem onPress={() => navigateTo("/perfil/agendamentos")}>
-          <OptionIcon><FontAwesome name="history" size={20} color="#555" /></OptionIcon>
+          <OptionIcon><FontAwesome5 name="history" size={20} color="#555" /></OptionIcon>
           <OptionText>Meus Agendamentos</OptionText>
         </OptionItem>
         <OptionItem onPress={() => navigateTo("/perfil/service")}>
-          <OptionIcon><FontAwesome name="credit-card" size={20} color="#555" /></OptionIcon>
+          <OptionIcon><FontAwesome5 name="credit-card" size={20} color="#555" /></OptionIcon>
           <OptionText>Meus Serviços</OptionText>
         </OptionItem>
       </OptionList>
@@ -54,13 +55,13 @@ function Perfil() {
       <SectionTitle>Preferências</SectionTitle>
       <OptionList>
         <OptionItem onPress={() => navigateTo("/perfil/ajuda")}>
-          <OptionIcon><FontAwesome name="question-circle" size={20} color="#555" /></OptionIcon>
+          <OptionIcon><FontAwesome5 name="question-circle" size={20} color="#555" /></OptionIcon>
           <OptionText>Ajuda</OptionText>
         </OptionItem>
       </OptionList>
 
       <LogoutButton onPress={() => console.log("Sair")}>
-        <LogoutIcon><FontAwesome name="sign-out" size={20} color="#d9534f" /></LogoutIcon>
+        <LogoutIcon><FontAwesome5 name="sign-out-alt" size={20} color="#d9534f" /></LogoutIcon>
         <LogoutText>Sair</LogoutText>
       </LogoutButton>
     </Container>
