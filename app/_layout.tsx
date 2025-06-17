@@ -1,17 +1,19 @@
 // app/layout.js
 import { Slot } from "expo-router";
 import { useEffect } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { initDatabase } from "./database/initDb"; // 👈 importa a função de init
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { initDatabase } from "../lib/database/initDb"; // ajustado para estrutura fora da pasta app
 
-export default function Layout() {
+export default function RootLayout() {
   useEffect(() => {
-    initDatabase(); // 👈 inicializa o banco de dados ao abrir o app
+    initDatabase(); // Inicializa o banco de dados ao abrir o app
   }, []);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Slot />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Slot />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
