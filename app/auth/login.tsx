@@ -15,6 +15,7 @@ import {
 
 import { useRouter } from "expo-router";
 import { Alert, Button, Switch } from "react-native";
+import { loginUsuario } from "../../lib/database/usuarios"; // 👈 ajuste o caminho se necessário
 
 export default function Login() {
   const router = useRouter();
@@ -27,12 +28,22 @@ export default function Login() {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
     }
-    router.replace("/home");
+
+    loginUsuario(
+      usuario,
+      senha,
+      (user) => {
+        Alert.alert("Login realizado", `Bem-vindo, ${user.email}!`);
+        router.replace("/home");
+      },
+      (err) => {
+        Alert.alert("Erro de login", "Usuário ou senha inválidos.");
+      }
+    );
   };
 
   const handleCadastro = () => {
     router.push("/auth/register");
-
   };
 
   return (
@@ -43,9 +54,11 @@ export default function Login() {
           <Subtitle>Entre com seus dados para continuar</Subtitle>
           <Form>
             <Input
-              placeholder="Nome de usuário"
+              placeholder="Email"
               value={usuario}
               onChangeText={setUsuario}
+              autoCapitalize="none"
+              keyboardType="email-address"
             />
             <Input
               placeholder="Senha"
