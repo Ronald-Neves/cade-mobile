@@ -12,7 +12,15 @@ import {
   SectionTitle,
 } from "./Home/styles";
 
+import { useRouter } from "expo-router"; // 👈 importa o hook de navegação
+
 export default function Home() {
+  const router = useRouter(); // 👈 instancia o hook
+
+  const irParaServicos = () => {
+    router.push("/servico"); // 👈 nome da rota (ajuste se for diferente)
+  };
+
   return (
     <ScrollView>
       <Container>
@@ -48,7 +56,7 @@ export default function Home() {
           </Card>
         </CardRow>
 
-        <ExploreButton>
+        <ExploreButton onPress={irParaServicos}>
           <ExploreButtonText>Explorar todos os serviços</ExploreButtonText>
         </ExploreButton>
       </Container>
