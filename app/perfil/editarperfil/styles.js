@@ -32,9 +32,12 @@ export const Input = styled.TextInput`
 
 export const AvatarOptions = styled.View`
   flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
 `;
+
 
 export const AvatarButton = styled.TouchableOpacity`
   padding: 5px;

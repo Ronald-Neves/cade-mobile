@@ -1,7 +1,8 @@
+import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { obterDados, salvarDados } from "../../services/storage"; // caminho corrigido
+import { obterDados, salvarDados } from "../../services/storage";
 import {
   AvatarButton,
   AvatarImage,
@@ -15,8 +16,15 @@ import {
 } from "./styles";
 
 const avatarOptions = [
-  { id: "masc", url: "https://i.pravatar.cc/150?img=12" },
-  { id: "fem", url: "https://i.pravatar.cc/150?img=47" },
+  { id: "masc1", url: "https://i.pravatar.cc/150?img=12" },
+  { id: "fem1", url: "https://i.pravatar.cc/150?img=47" },
+  { id: "masc2", url: "https://i.pravatar.cc/150?img=15" },
+  { id: "fem2", url: "https://i.pravatar.cc/150?img=45" },
+  { id: "neutro1", url: "https://i.pravatar.cc/150?img=3" },
+  { id: "neutro2", url: "https://i.pravatar.cc/150?img=33" },
+  { id: "neutro3", url: "https://i.pravatar.cc/150?img=5" },
+  { id: "masc3", url: "https://i.pravatar.cc/150?img=26" },
+  { id: "fem3", url: "https://i.pravatar.cc/150?img=39" },
 ];
 
 export default function EditarPerfil() {
@@ -50,6 +58,24 @@ export default function EditarPerfil() {
     router.back();
   };
 
+  const tirarFoto = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert("Permissão negada", "Você precisa permitir o uso da câmera.");
+      return;
+    }
+
+    const resultado = await ImagePicker.launchCameraAsync({
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!resultado.canceled) {
+      setAvatarSelecionado(resultado.assets[0].uri);
+    }
+  };
+
   return (
     <Container>
       <Title>Editar Foto de Perfil</Title>
@@ -76,6 +102,10 @@ export default function EditarPerfil() {
           </AvatarButton>
         ))}
       </AvatarOptions>
+
+      <SaveButton onPress={tirarFoto} style={{ backgroundColor: "#28a745", marginBottom: 10 }}>
+        <SaveButtonText>📷 Tirar Foto com a Câmera</SaveButtonText>
+      </SaveButton>
 
       <SaveButton onPress={handleSalvar}>
         <SaveButtonText>Salvar Alterações</SaveButtonText>
