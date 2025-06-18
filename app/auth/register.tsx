@@ -21,7 +21,7 @@ import {
   Title
 } from "./styles";
 
-import { obterDados, salvarDados } from "../services/storage"; // ajuste se o caminho for diferente
+import { obterDados, salvarDados } from "../services/storage";
 
 export default function Cadastro() {
   const router = useRouter();
@@ -57,17 +57,22 @@ export default function Cadastro() {
 
   return (
     <Container>
-      <Box>
-        <RightPanel>
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={{ flex: 1 }}
-            keyboardVerticalOffset={60}
-          >
-            <ScrollView
-              contentContainerStyle={{ flexGrow: 1 }}
-              showsVerticalScrollIndicator={false}
-            >
+      <KeyboardAvoidingView
+        style={{ flex: 1, width: '100%' }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={60}
+      >
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 40
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Box>
+            <RightPanel>
               <Title>Cadastro</Title>
               <Subtitle>Preencha os dados abaixo para criar sua conta</Subtitle>
 
@@ -85,7 +90,6 @@ export default function Cadastro() {
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
-                  type="email"
                 />
 
                 <Label>Senha</Label>
@@ -114,10 +118,10 @@ export default function Cadastro() {
                   </LinkText>
                 </LinkRow>
               </Form>
-            </ScrollView>
-          </KeyboardAvoidingView>
-        </RightPanel>
-      </Box>
+            </RightPanel>
+          </Box>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Container>
   );
 }
