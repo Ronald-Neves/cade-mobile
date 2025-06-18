@@ -5,7 +5,6 @@ import {
   Container,
   Form,
   Input,
-  Label,
   LinkRow,
   LinkText,
   RightPanel,
@@ -14,7 +13,7 @@ import {
 } from "./styles";
 
 import { useRouter } from "expo-router";
-import { Alert, Button, Switch } from "react-native";
+import { Alert, Button } from "react-native";
 
 export default function Login() {
   const router = useRouter();
@@ -54,11 +53,6 @@ export default function Login() {
               secureTextEntry
             />
             <CheckboxWrapper>
-              <Switch
-                value={lembrar}
-                onValueChange={setLembrar}
-              />
-              <Label>Lembrar de mim</Label>
             </CheckboxWrapper>
             <Button onPress={handleLogin} title="ENTRAR" />
             <LinkRow>
