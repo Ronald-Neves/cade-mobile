@@ -5,12 +5,6 @@
 ### 🧭 Nome do Projeto
 
 **Cadê?** é um aplicativo mobile que conecta usuários a empresas e prestadores de serviços locais com praticidade e agilidade.  
-Com poucos toques, é possível visualizar informações detalhadas sobre o estabelecimento, incluindo:
-
-- Localização
-- Horário de funcionamento
-- Avaliações
-- Contato direto por mensagem ou telefone
 
 Um catálogo digital inteligente com foco em **simplicidade** e **usabilidade**.
 
@@ -20,9 +14,8 @@ Um catálogo digital inteligente com foco em **simplicidade** e **usabilidade**.
 
 - **📱 Framework Mobile:** React Native 0.73  
 - **🖥️ Backend (API REST):** Node.js 20 + Express.js  
-- **💾 Banco de Dados:** PostgreSQL 15  
+- **💾 Banco de Dados:** AsyncStorage
 - **🔐 Autenticação & Notificações Push:** Firebase 11.28  
-- **🗺️ Geolocalização:** Leaflet  
 - **🧭 Navegação:** React Navigation 6.1  
 - **📦 Estado Global:** Redux Toolkit  
 - **🎨 Estilo:** Tailwind CSS (via NativeWind)  
@@ -34,14 +27,13 @@ Um catálogo digital inteligente com foco em **simplicidade** e **usabilidade**.
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/usuario/cade-app.git
-cd cade-app
+git clone https://github.com/usuario/cade-mobile.git
 
 # Instalar dependências
 npm install
 
 # Executar no emulador ou dispositivo físico
-npx react-native run-android
+npx expo start 
 # ou
 npx react-native run-ios
 ```
@@ -65,9 +57,7 @@ Oferece visualizações completas de perfis, incluindo contato direto com presta
 ---
 
 ### 💡 Exemplos de Uso
-
-- Um usuário busca uma **farmácia** aberta e **liga diretamente** pelo app  
-- Um cliente encontra um **chaveiro próximo** e envia uma **mensagem no app**
+- Um cliente encontra um **chaveiro próximo** 
 
 ---
 
@@ -162,11 +152,9 @@ Distribuição equilibrada conforme disponibilidade de recursos
 
 | Tarefa | Responsável | Data | Status |
 |-------|-------------|------|--------|
-| Estrutura inicial do projeto + dependências | Ronald | 14/05 | ✅ Concluída |
-| Autenticação Firebase (e-mail/telefone/Google) | João | 14/05 | 🔄 Em andamento |
-| Tela de login e cadastro com seleção de perfil | Samuel | 21/05 | ✅ Concluída |
-| Tela principal (Home) com sugestões | Ronald | 21/05 | ✅ Concluída |
-| Sistema de busca e sugestões | João | 28/05 | ✅ Concluída |
-| Tela de perfil do estabelecimento | Samuel | 28/05 | ⏳ Planejada |
-| Sistema de avaliações e comentários | Samuel | 11/06 | ⏳ Planejada |
-| Layout responsivo e testes finais | Equipe | 18/06 | ⏳ Planejada |
+| Estrutura inicial do projeto + dependências | Ronald | 14/05 | Concluída |
+| Autenticação Firebase (e-mail/telefone/Google) | João | 14/05 | Concluida |
+| Tela de login e cadastro com seleção de perfil | Samuel | 21/05 |  Concluída |
+| Tela principal (Home) com sugestões | Ronald | 21/05 |  Concluída |
+| Sistema de busca e sugestões | João | 28/05 |  Concluída |
+| Layout responsivo e testes finais | Equipe | 18/06 | Concluida |
