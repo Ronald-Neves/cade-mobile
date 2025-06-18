@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { obterDados, salvarDados } from "../../services/storage"; // caminho ajustado
 import {
   AvatarButton,
   AvatarImage,
@@ -10,29 +11,44 @@ import {
   Label,
   SaveButton,
   SaveButtonText,
-  Title,
+  Title
 } from "./styles";
 
 const avatarOptions = [
-  {
-    id: "masc",
-    url: "https://i.pravatar.cc/150?img=12", // Avatar masculino
-  },
-  {
-    id: "fem",
-    url: "https://i.pravatar.cc/150?img=47", // Avatar feminino
-  },
+  { id: "masc", url: "https://i.pravatar.cc/150?img=12" },
+  { id: "fem", url: "https://i.pravatar.cc/150?img=47" },
 ];
 
 export default function EditarPerfil() {
   const router = useRouter();
-
-  const [nome, setNome] = useState("Samuel Souza");
+  const [usuarioKey, setUsuarioKey] = useState("");
+  const [nome, setNome] = useState("");
   const [avatarSelecionado, setAvatarSelecionado] = useState(avatarOptions[0].url);
 
-  const handleSalvar = () => {
+  useEffect(() => {
+    const carregar = async () => {
+      const key = await obterDados("usuario_logado");
+      const dados = await obterDados(`usuario:${key}`);
+      if (dados) {
+        setUsuarioKey(key);
+        setNome(dados.nome || dados.usuario || "");
+        setAvatarSelecionado(dados.avatar || avatarOptions[0].url);
+      }
+    };
+    carregar();
+  }, []);
+
+  const handleSalvar = async () => {
+    const dadosAntigos = await obterDados(`usuario:${usuarioKey}`);
+    const atualizados = {
+      ...dadosAntigos,
+      nome,
+      avatar: avatarSelecionado,
+    };
+
+    await salvarDados(`usuario:${usuarioKey}`, atualizados);
     Alert.alert("Perfil atualizado", `Nome: ${nome}`);
-    router.back(); // Volta para a tela de perfil
+    router.back();
   };
 
   return (
