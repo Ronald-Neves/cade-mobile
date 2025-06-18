@@ -57,6 +57,24 @@ export default function Login() {
     router.push("/auth/register");
   };
 
+  const handleEsqueceuSenha = async () => {
+    if (!usuario.trim()) {
+      Alert.alert("Recuperação de Senha", "Informe seu nome de usuário.");
+      return;
+    }
+
+    const dadosUsuario = await obterDados(`usuario:${usuario}`);
+    if (!dadosUsuario || !dadosUsuario.email) {
+      Alert.alert("Erro", "Usuário não encontrado ou sem e-mail cadastrado.");
+      return;
+    }
+
+    Alert.alert(
+      "Recuperação de Senha",
+      `Um e-mail foi enviado para: ${dadosUsuario.email}`
+    );
+  };
+
   return (
     <Container>
       <Box>
@@ -81,7 +99,9 @@ export default function Login() {
               <LinkText onPress={handleCadastro}>
                 Não tem conta? Cadastrar
               </LinkText>
-              <LinkText>Esqueceu a senha?</LinkText>
+              <LinkText onPress={handleEsqueceuSenha}>
+                Esqueceu a senha?
+              </LinkText>
             </LinkRow>
           </Form>
         </RightPanel>
