@@ -1,4 +1,5 @@
 import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { obterDados } from "../services/storage"; // ajuste conforme sua estrutura
@@ -67,10 +68,14 @@ function Perfil() {
         </OptionItem>
       </OptionList>
 
-      <LogoutButton onPress={() => console.log("Sair")}>
-        <LogoutIcon><FontAwesome name="sign-out" size={20} color="#d9534f" /></LogoutIcon>
-        <LogoutText>Sair</LogoutText>
-      </LogoutButton>
+      <LogoutButton onPress={async () => {
+         await AsyncStorage.removeItem("usuario_logado");
+         router.replace("/auth/login");
+      }}>
+  <LogoutIcon><FontAwesome name="sign-out" size={20} color="#d9534f" /></LogoutIcon>
+  <LogoutText>Sair</LogoutText>
+</LogoutButton>
+
     </Container>
   );
 }
