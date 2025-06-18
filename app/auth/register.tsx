@@ -4,12 +4,14 @@ import {
   Alert,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
+  ScrollView,
+  View,
 } from "react-native";
 
 import {
   Box,
   Button,
+  ButtonText,
   Container,
   Form,
   Input,
@@ -67,7 +69,7 @@ export default function Cadastro() {
             flexGrow: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            paddingBottom: 40
+            paddingBottom: 60,
           }}
           showsVerticalScrollIndicator={false}
         >
@@ -109,14 +111,16 @@ export default function Cadastro() {
                 />
 
                 <Button onPress={handleCadastro}>
-                  <LinkText>CADASTRAR</LinkText>
+                  <ButtonText>CADASTRAR</ButtonText>
                 </Button>
 
-                <LinkRow>
-                  <LinkText onPress={() => router.push("/auth/login")}>
-                    Já tem conta? Entrar
-                  </LinkText>
-                </LinkRow>
+                <View style={{ marginTop: 24, alignItems: 'center' }}>
+                  <LinkRow>
+                    <LinkText onPress={() => router.push("/auth/login")}>
+                      Já tem conta? Entrar
+                    </LinkText>
+                  </LinkRow>
+                </View>
               </Form>
             </RightPanel>
           </Box>
