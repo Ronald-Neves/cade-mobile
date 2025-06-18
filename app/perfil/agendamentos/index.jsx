@@ -22,11 +22,18 @@ export default function Agendamentos() {
   }, []);
 
   const carregarAgendamentos = async () => {
-    const dados = await AsyncStorage.getItem('agendamentos');
-    if (dados) {
-      setAgendamentos(JSON.parse(dados));
-    }
-  };
+  const usuarioLogado = await AsyncStorage.getItem('usuario_logado');
+  const dados = await AsyncStorage.getItem('agendamentos');
+
+  if (dados && usuarioLogado) {
+    const todos = JSON.parse(dados);
+    const filtrados = todos.filter(item => item.usuario === usuarioLogado);
+    setAgendamentos(filtrados);
+  } else {
+    setAgendamentos([]);
+  }
+};
+
 
   const confirmarExclusao = (index) => {
     setIndiceParaExcluir(index);

@@ -1,7 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { obterDados } from "../services/storage"; // ajuste se necessário
+import { obterDados } from "../services/storage"; // ajuste conforme sua estrutura
 import {
   Avatar,
   Container,
@@ -27,8 +27,8 @@ function Perfil() {
 
   useEffect(() => {
     const carregarUsuario = async () => {
-      const nome = await obterDados("usuario_logado");
-      const dados = await obterDados(`usuario:${nome}`);
+      const chave = await obterDados("usuario_logado");
+      const dados = await obterDados(`usuario:${chave}`);
       if (dados) setUsuario(dados);
     };
     carregarUsuario();
@@ -40,7 +40,7 @@ function Perfil() {
     <Container>
       <Header>
         <Avatar source={{ uri: usuario.avatar || "https://i.pravatar.cc/150?img=12" }} />
-        <Name>{usuario.nome}</Name>
+        <Name>{usuario.nome || usuario.usuario}</Name>
       </Header>
 
       <SectionTitle>Conta</SectionTitle>

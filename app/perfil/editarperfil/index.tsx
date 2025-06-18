@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
-import { obterDados, salvarDados } from "../../services/storage"; // caminho ajustado
+import { obterDados, salvarDados } from "../../services/storage"; // caminho corrigido
 import {
   AvatarButton,
   AvatarImage,
@@ -22,7 +22,7 @@ const avatarOptions = [
 export default function EditarPerfil() {
   const router = useRouter();
   const [usuarioKey, setUsuarioKey] = useState("");
-  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
   const [avatarSelecionado, setAvatarSelecionado] = useState(avatarOptions[0].url);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function EditarPerfil() {
       const dados = await obterDados(`usuario:${key}`);
       if (dados) {
         setUsuarioKey(key);
-        setNome(dados.nome || dados.usuario || "");
+        setEmail(dados.email || "");
         setAvatarSelecionado(dados.avatar || avatarOptions[0].url);
       }
     };
@@ -42,24 +42,23 @@ export default function EditarPerfil() {
     const dadosAntigos = await obterDados(`usuario:${usuarioKey}`);
     const atualizados = {
       ...dadosAntigos,
-      nome,
       avatar: avatarSelecionado,
     };
 
     await salvarDados(`usuario:${usuarioKey}`, atualizados);
-    Alert.alert("Perfil atualizado", `Nome: ${nome}`);
+    Alert.alert("Perfil atualizado com sucesso!");
     router.back();
   };
 
   return (
     <Container>
-      <Title>Editar Perfil</Title>
+      <Title>Editar Foto de Perfil</Title>
 
-      <Label>Nome</Label>
+      <Label>Email cadastrado</Label>
       <Input
-        value={nome}
-        onChangeText={setNome}
-        placeholder="Digite seu nome"
+        value={email}
+        editable={false}
+        style={{ backgroundColor: "#eee", color: "#666" }}
       />
 
       <Label>Selecionar Avatar</Label>
