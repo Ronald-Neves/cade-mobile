@@ -21,6 +21,8 @@ import {
   Title
 } from "./styles";
 
+import { obterDados, salvarDados } from "../services/storage"; // ajuste se o caminho for diferente
+
 export default function Cadastro() {
   const router = useRouter();
 
@@ -29,7 +31,7 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
-  const handleCadastro = () => {
+  const handleCadastro = async () => {
     if (!usuario || !email || !senha || !confirmarSenha) {
       Alert.alert("Erro", "Preencha todos os campos.");
       return;
@@ -40,7 +42,17 @@ export default function Cadastro() {
       return;
     }
 
-    router.replace("/home");
+    const existente = await obterDados(`usuario:${usuario}`);
+    if (existente) {
+      Alert.alert("Erro", "Usuário já cadastrado.");
+      return;
+    }
+
+    const novoUsuario = { usuario, email, senha };
+    await salvarDados(`usuario:${usuario}`, novoUsuario);
+
+    Alert.alert("Sucesso", "Usuário cadastrado com sucesso.");
+    router.replace("/auth/login");
   };
 
   return (

@@ -31,9 +31,23 @@ export default function Agendar() {
   };
 
   const confirmarAgendamento = async () => {
-    const agendamento = { servico, local, data, hora, orcamento };
-
     try {
+      const usuario = await AsyncStorage.getItem('usuario_logado');
+
+      if (!usuario) {
+        setMensagem("Erro: nenhum usuário logado.");
+        return;
+      }
+
+      const agendamento = {
+        usuario,
+        servico,
+        local,
+        data,
+        hora,
+        orcamento,
+      };
+
       const existentes = await AsyncStorage.getItem('agendamentos');
       const agendamentos = existentes ? JSON.parse(existentes) : [];
       agendamentos.push(agendamento);
@@ -84,7 +98,6 @@ export default function Agendar() {
         onChangeText={handleOrcamentoChange}
       />
 
-      {/* Botões lado a lado */}
       <View style={custom.buttonRow}>
         <View style={custom.buttonWrapper}>
           <Button title="Confirmar" onPress={confirmarAgendamento} />
@@ -111,6 +124,6 @@ const custom = StyleSheet.create({
     gap: 10,
   },
   buttonWrapper: {
-    minWidth: 100,            
+    minWidth: 100,
   },
 });
