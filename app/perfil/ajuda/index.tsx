@@ -34,6 +34,10 @@ const perguntasRespostas = [
     pergunta: "Qual a ideia do aplicativo Cade?",
     resposta: "A proposta do aplicativo é conectar prestadores de serviços com possíveis clientes, facilitando o agendamento e a comunicação entre as partes.",
   },
+   {
+    pergunta: "Como posso ver os serviços disponíveis?",
+    resposta: "Vá até a aba 'Perfil' e toque em 'Meus Serviços'. Nesta página, você poderá visualizar todos os serviços solicitados pelos usuários.",
+  },
   {
     pergunta: "Informações",
     resposta: "O aplicativo 'Cade?' está em sua versão inicial e ainda está em fase de desenvolvimento. Por isso, é possível que alguns erros ou limitações estejam presentes nesta etapa. Estamos trabalhando constantemente para aprimorar a experiência, corrigir eventuais falhas e lançar atualizações com melhorias e novas funcionalidades em breve. Agradecemos pela compreensão e por fazer parte dessa jornada com a gente.",
