@@ -36,7 +36,7 @@ npx expo start
 # ou
 npx react-native run-ios
 
-
+...
 
 ### 🚀 Uso
 
