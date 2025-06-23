@@ -4,7 +4,7 @@
 
 ### 🧭 Nome do Projeto
 
-**Cadê?** é um aplicativo mobile que conecta usuários a empresas e prestadores de serviços locais com praticidade e agilidade.  
+**Cadê?** é um aplicativo mobile que conecta usuários a empresas e prestadores de serviços locais com praticidade e agilidade, procurando deixar sempre essa relação o mais fácil possível.
 
 Um catálogo digital inteligente com foco em **simplicidade** e **usabilidade**.
 
@@ -12,10 +12,9 @@ Um catálogo digital inteligente com foco em **simplicidade** e **usabilidade**.
 
 ### 🛠️ Tecnologias Utilizadas (Mobile)
 
-- **📱 Framework Mobile:** React Native 0.73  
+- **📱 Framework Mobile:** React Native Expo 0.73  
 - **🖥️ Backend (API REST):** Node.js 20 + Express.js  
 - **💾 Banco de Dados:** AsyncStorage
-- **🔐 Autenticação & Notificações Push:** Firebase 11.28  
 - **🧭 Navegação:** React Navigation 6.1  
 - **📦 Estado Global:** Redux Toolkit  
 - **🎨 Estilo:** Tailwind CSS (via NativeWind)  
@@ -36,9 +35,6 @@ npm install
 npx expo start 
 # ou
 npx react-native run-ios
-```
-
-> ⚠️ **Observação:** É necessário configurar as chaves do Firebase e Google Maps no arquivo `.env`.
 
 ---
 
@@ -79,8 +75,7 @@ Oferece visualizações completas de perfis, incluindo contato direto com presta
 ### ✨ Diferenciais do **Cadê?**
 
 - ✅ Interface minimalista e fácil de usar  
-- ✅ Contato direto (mensagem ou ligação)  
-- ✅ Filtros por categoria, nota, distância  
+- ✅ Contato direto 
 - ✅ Ideal para pequenos negócios e agilidade
 
 ---
@@ -96,17 +91,13 @@ Oferece visualizações completas de perfis, incluindo contato direto com presta
 
 - Sugestões automáticas ao digitar
 
-### 🏪 Catálogo de Estabelecimentos
+### 🏪 Catálogo de Serviços
 
-- Nome, localização (Google Maps), descrição, fotos, horário, avaliações
+- Nome, descrição, horário, orçamento.
 
 ### 📞 Contato Direto
 
-- Botão para enviar mensagem ou realizar ligação
-
-### 🌟 Avaliações
-
-- Sistema de notas e comentários por usuários autenticados
+- Botão para solicitar o serviço.
 
 ---
 
@@ -129,13 +120,14 @@ Oferece visualizações completas de perfis, incluindo contato direto com presta
 - **Tela de Busca**  
   - Campo com sugestões dinâmicas
 
-- **Tela do Estabelecimento**  
-  - Nome, descrição, fotos  
-  - Botões de contato e avaliações
+- **Tela de Agendamentos**  
+  - Nome, descrição, datas, orçamento.
 
 - **Tela de Perfil**  
   - Edição de dados  
   - Botão de logout
+  - Botão de ajuda
+  - Meus Agendamentos
 
 ---
 
