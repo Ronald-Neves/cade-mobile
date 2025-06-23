@@ -154,5 +154,3 @@ Distribuição equilibrada conforme disponibilidade de recursos.
 | Layout responsivo e testes finais                      | Equipe      | 18/06  | ✅ Concluída |
 
 ---
-
-🔗 [Voltar ao topo](#📱-cadê?-–-conectando-você-ao-que-precisa-perto-de-você)
